@@ -1,22 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from '../controllers/app.controller';
 import { AppService } from '../services/app.service';
-import { DatabaseModule } from './database.module';
-import { usersProviders } from '../providers/users.provider';
-import { JwtModule } from '@nestjs/jwt';
+import { AuthModule } from './auth.module';
 
 @Module({
-  imports: [
-    DatabaseModule,
-    JwtModule.register({
-      global: true,
-      secret: 'ChainBlade2023@@@',
-      signOptions: {
-        expiresIn: '1h',
-      },
-    }),
-  ],
+  imports: [AuthModule],
   controllers: [AppController],
-  providers: [...usersProviders, AppService],
+  providers: [AppService],
 })
 export class AppModule {}

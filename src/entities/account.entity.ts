@@ -1,11 +1,12 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, Generated, PrimaryColumn } from 'typeorm';
 
 @Entity({
-  name: 'users',
+  name: 'account',
 })
-export class UsersEntity {
+export class AccountEntity {
+  @Generated('increment')
   @PrimaryColumn({
-    name: 'id',
+    name: 'account_id',
     type: 'int',
   })
   id: string;
@@ -28,4 +29,14 @@ export class UsersEntity {
     unique: true,
   })
   nonce: string;
+
+  @Column({
+    name: 'role',
+  })
+  role: string;
+
+  @Column({
+    name: 'membership',
+  })
+  membership: string;
 }
